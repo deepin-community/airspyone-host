@@ -1,0 +1,2 @@
+# protective diversion for upgrades of files moved from / to /usr
+libairspy0: diversion-for-unknown-file lib/udev/rules.d/60-libairspy0.rules [preinst:11]

@@ -1,15 +1,61 @@
-Source: template-repository
-Section: unknown
+Source: airspyone-host
+Section: libs
 Priority: optional
-Maintainer: Tsic404 <liuheng@deepin.org>
-Build-Depends: debhelper (>= 11)
-Standards-Version: 4.1.3
-Homepage: https://github.com/deepin-community/template-repository
-#Vcs-Browser: https://salsa.debian.org/debian/deepin-community-template-repository
-#Vcs-Git: https://salsa.debian.org/debian/deepin-community-template-repository.git
+Maintainer: A. Maitland Bottoms <bottoms@debian.org>
+Build-Depends: cmake,
+               debhelper-compat (= 13),
+               libusb-1.0-0-dev [!kfreebsd-any],
+               libusb2-dev [kfreebsd-any],
+               pkg-config
+Standards-Version: 4.6.2
+Rules-Requires-Root: no
+Homepage: http://airspy.com
+Vcs-Browser: https://salsa.debian.org/bottoms/pkg-airspy-host
+Vcs-Git: https://salsa.debian.org/bottoms/pkg-airspy-host.git
 
-Package: template-repository
+Package: libairspy-dev
+Section: libdevel
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Multi-Arch: same
+Pre-Depends: ${misc:Pre-Depends}
+Depends: libairspy0 (= ${binary:Version}), ${misc:Depends}
+Description: Tiny and efficient software defined radio receiver - development
+ Airspy is an open source Software Defined Radio that can receive
+ between 24 MHz and 1750 MHz. Airspy has a 10 MHz bandwidth.
+ 12bit ADC @ 20 MSPS (80dB SFDR, 64dB SNR, 10.4 ENOB)
+ It is a High Speed USB device powered by the USB bus.
+ .
+ This package contains development files.
+
+Package: libairspy0
+Architecture: any
+Pre-Depends: ${misc:Pre-Depends}
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Breaks: libgnuradio-osmosdr0.1.3 (<< 0.1.4-11)
+Multi-Arch: same
+Description: Tiny and efficient software defined radio receiver - library
+ Airspy is an open source Software Defined Radio that can receive
+ between 24 MHz and 1750 MHz. Airspy has a 10 MHz bandwidth.
+ 12bit ADC @ 20 MSPS (80dB SFDR, 64dB SNR, 10.4 ENOB)
+ It is a High Speed USB device powered by the USB bus.
+ .
+ This package contains the shared library.
+
+Package: airspy
+Section: comm
+Architecture: any
+Depends: libairspy0 (= ${binary:Version}), ${misc:Depends}, ${shlibs:Depends}
+Description: Tiny and efficient software defined radio receiver - utilities
+ Airspy is an open source Software Defined Radio that can receive
+ between 24 MHz and 1750 MHz. Airspy has a 10 MHz bandwidth.
+ 12bit ADC @ 20 MSPS (80dB SFDR, 64dB SNR, 10.4 ENOB)
+ It is a High Speed USB device powered by the USB bus.
+ .
+ This package contains a set of command line utilities:
+  * airspy_cpldjtag: program CLPD
+  * airspy_info: probe device and show configuration
+  * airspy_max2837: chip register read/write tool
+  * airspy_rffc5071: chip register read/write tool
+  * airspy_si5351c: chip register read/write tool
+  * airspy_spiflash: read and write flash data from file.
+  * airspy_transfer: file based transmit and receive sdr

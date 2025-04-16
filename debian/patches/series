@@ -1,0 +1,8 @@
+0001-Use-device-stop_requested-when-libusb-errors-out-76.patch
+0002-Process-pending-libusb-events-before-shutdown-78.patch
+0003-Fix-cmake_minimum_required-to-avoid-warnings-80.patch
+0004-Fix-cmake-warning-regarding-module-name-79.patch
+0005-Remove-unused-statics-to-stop-gcc-warnings-81.patch
+0006-Fixed-the-usb-tear-down-sequence.patch
+libusb-freebsd
+On-linux-check-whether-a-kernel-driver-is-attached
