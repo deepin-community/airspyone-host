@@ -1,0 +1,3 @@
+usr/lib/*/lib*.so.*
+debian/com.airspy.host.metainfo.xml usr/share/metainfo
+debian/60-libairspy0.rules usr/lib/udev/rules.d
